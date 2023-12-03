@@ -1,6 +1,3 @@
-import {
-    loadFixture,
-} from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
@@ -17,13 +14,13 @@ describe("Spacebear", () => {
 
     describe("Deployment", () => {
         it("Should set the right owner", async() => {
-            const { owner, spaceBear } = await loadFixture(deploySpacebearFixture);
+            const { owner, spaceBear } = await deploySpacebearFixture();
 
             expect(await spaceBear.owner()).to.equal(owner.address);
         });
 
-        it("should mint Spacebear NFT to correct owner", async() => {
-            const { spaceBear, address1 } = await loadFixture(deploySpacebearFixture);
+        it("Should mint Spacebear NFT to correct owner", async() => {
+            const { spaceBear, address1 } = await deploySpacebearFixture();
 
             await spaceBear.safeMint(address1, "testurl");
 
